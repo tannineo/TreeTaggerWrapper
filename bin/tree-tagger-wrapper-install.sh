@@ -54,25 +54,24 @@ if [[ "$(uname)" == "Darwin" ]]; then
     if [ -z "$oldVersion" ]; then
         evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-MacOSX-3.2.2.tar.gz" "$progName,$LINENO: "
     else
-        evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-MacOSX-3.2.2-old.tar.gz"  "$progName,$LINENO: "
+        evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-MacOSX-3.2.2.tar.gz"  "$progName,$LINENO: "
     fi
     evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tagger-scripts.tar.gz" "$progName,$LINENO: "
     evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/install-tagger.sh" "$progName,$LINENO: "
-    for lang in $languages; do
-        evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/${lang}-par-MacOSX-3.2.2-utf8.bin.gz" "$progName,$LINENO: "
-    done
 else
     if [ -z "$oldVersion" ]; then
         evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-linux-3.2.2.tar.gz" "$progName,$LINENO: "
     else
-        evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-linux-3.2.2-old.tar.gz"  "$progName,$LINENO: "
+        evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tree-tagger-linux-3.2-old5.tar.gz"  "$progName,$LINENO: "
     fi
     evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/tagger-scripts.tar.gz" "$progName,$LINENO: "
     evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/install-tagger.sh" "$progName,$LINENO: "
-    for lang in $languages; do
-        evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/${lang}-par-linux-3.2.2-utf8.bin.gz" "$progName,$LINENO: "
-    done
 fi
+
+for lang in $languages; do
+    evalSafe "wget http://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/data/${lang}.par.gz" "$progName,$LINENO: "
+done
+
 evalSafe "bash install-tagger.sh" "$progName,$LINENO: "
 
 popd >/dev/null
